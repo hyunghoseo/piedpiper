@@ -7,6 +7,6 @@ Hannah Radom
 Hariharan Vijayachandran  
 Amandeep Singh  
 Esther Stolbach  
-Matt Sirota 
-Hyungho Seo
+Matt Sirota  
+Hyungho Seo  
 Elliot Wasem  
