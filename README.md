@@ -4,5 +4,5 @@ Mateusz Mroczkowski
 John Wang  
 Gabrielle Padriga  
 Hannah Radom  
-Hariharan Vijayachandran
-Amandeep Singh
+Hariharan Vijayachandran  
+Amandeep Singh  
