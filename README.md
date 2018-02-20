@@ -9,5 +9,5 @@ Amandeep Singh
 Esther Stolbach  
 Matt Sirota  
 Hyungho Seo  
-Elliot Wasem 
-Matthew Poltorak   
+Elliot Wasem  
+Min Su Park  
