@@ -5,3 +5,4 @@ John Wang
 Gabrielle Padriga  
 Hannah Radom  
 Hariharan Vijayachandran
+Amandeep Singh
