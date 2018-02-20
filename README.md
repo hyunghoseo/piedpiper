@@ -8,5 +8,5 @@ Hariharan Vijayachandran
 Amandeep Singh  
 Esther Stolbach  
 Matt Sirota 
-Hyungho Seo  
-Min Su Park
+Hyungho Seo
+Elliot Wasem  
