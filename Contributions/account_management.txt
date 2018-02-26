@@ -1,0 +1,4 @@
+  2/26/2018:
+    Minsu - decided on the web framework Flask
+    Hariharan - talked to video & communication team for deciding on the web framework
+    Hyungho - set up a simple Flask app
