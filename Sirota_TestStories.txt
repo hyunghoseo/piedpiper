@@ -1,0 +1,12 @@
+Title: User compiles program
+Acceptance Test:compilerWorks        Priority:2      Story Points:1
+Given the compiler works
+When the user compiles the program
+Then ensure that code compiles and correct output is shown on the screen
+
+
+Title: Compiler works for valid code
+Acceptance test:textEditorWorks    Prioity:1    Story Points:1
+Given that the text editor is functional
+When the code is compiled
+Then ensure that the code compiled is actually valid
