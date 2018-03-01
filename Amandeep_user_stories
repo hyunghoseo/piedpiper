@@ -1,0 +1,14 @@
+Amandeep Singh
+
+Scheduling Page
+Acceptance Test: View the Schedule
+Priority: 1
+Story Points: 3
+As the User, I should be able to navigate to and view the scheduling page. The page should be easy to get to and not cluttered.
+
+
+Access to Tutoring page
+Acceptance Test: Go to the appointment when logged in
+Priority: 1
+Story Points: 2
+As the User, I will be able to view my appointments after logging in, and go to the tutoring page for the lesson.
