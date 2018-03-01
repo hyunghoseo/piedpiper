@@ -1,0 +1,5 @@
+DuplicateReg    story points: 1
+
+If a user attempts to register with an email that is already registered,
+there will be a warning message displayed, a new account cannot be created,
+and a password reset prompt will show up
