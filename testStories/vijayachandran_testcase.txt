@@ -1,0 +1,12 @@
+Title: Successful User Authentication
+Acceptance Test: UsrAuth1
+Priority:1
+Story Points: 3
+Given a user's login credentials are correct when they try to log in, then the server accesses their user data and returns their home page
+
+Title: Unsuccessful User Authentication
+Acceptance Test: UsrAuth2
+Priority:1
+Story Points:3
+Given a user's login credentials are incorrect when they try to log in, then the server sends back an error message that says "incorrect user ID or password)
+
