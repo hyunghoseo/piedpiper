@@ -1,0 +1,6 @@
+Title: Registration
+Acceptance Test: newUserReg | Priority 1 | Story Points: 3
+Given the user is new to the site
+When they want to make an account
+Then they can click on the registration button on the front page
+which will let them enter a user name and password to make an account

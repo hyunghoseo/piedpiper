@@ -1,0 +1,6 @@
+Title: Login
+Acceptance Test: userLogin | Priority 1 | Story Points: 3
+Given the user has an account already
+When they want access their appointments
+Then they can enter their information in the login fields on the front page
+and then are brought to their user homepage
