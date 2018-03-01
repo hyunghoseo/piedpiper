@@ -1,0 +1,17 @@
+Title: User edits text properly
+Acceptance Test: Text is edited
+Priority: 1
+Story Points: 1
+
+Given the user is using text editor
+When the user types text into text input field
+Then ensure the text changes according to what they typed
+<================================================>
+Title: Text editor highlights text
+Acceptance test: text is properly highlighted
+Priority: 2
+Story Points: 3
+
+Given our text editor is in use
+When there is proper Java or Swift code in text editor
+Then the text will be highlighted in a style that is appropriate for Java or Swift respectively
