@@ -1,0 +1,35 @@
+Title: Tutor Side Update
+Acceptance Test: tutorUpdate
+Priority: 1
+Story Points: 3
+Details:
+    Given that the tutor has logged in, tutors needs to be able to see a calendar
+    when the tutor decides to see, create or update their schedule
+    then the tutor is able to enter new information and update their schedule.
+
+Title: Client Side Viewing
+Acceptance Test: clientView
+Priority: 2
+Story Points: 1
+Details:
+    Given that the user has found a tutor to learn from
+    when the user accesses the tutor's scheduling page
+    then the user is able to see the tutor's schedule.
+    
+Title: Client Side Appointment
+Acceptance Test: clientAppt
+Priority: 3
+Story Points: 2
+Details:
+    Given that the user has accessed a tutor's schedule
+    when the user chooses an open time slot
+    then the time slot is locked and the user has scheduled an appointment.
+
+Title: Tutor Side View
+Acceptance Test: tutorView
+Priority: 4
+Story Points: 1
+Details:
+    Given that a user has made an appointment with a tutor
+    when the tutor accesses their own scheduling UI
+    then tutors are able to see appointment information.
