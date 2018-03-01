@@ -1,0 +1,6 @@
+AppointmentSchedule                     story points: 1
+
+When a user goes to the schedule page and schedules an appointment
+with a tutor, the appointment request should be sent to the tutor, 
+the user should be told their request has gone through, and the calendar should
+reflect that the new appointment exists.
