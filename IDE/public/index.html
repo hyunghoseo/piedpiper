@@ -19,22 +19,65 @@
         right: 0;
     }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            var code = editor.getValue();
+            var to_compile = {
+                "LanguageChoice": "4",
+                "Program": code,
+                "Input": "",
+                "CompilerArgs" : ""
+            };
+
+            $.ajax ({
+                    url: "http://rextester.com/rundotnet/api",
+                    type: "POST",
+                    data: to_compile
+                }).done(function(data) {
+                    alert(JSON.stringify(data));
+                }).fail(function(data, err) {
+                    alert("fail " + JSON.stringify(data) + " " + JSON.stringify(err));
+                });
+        });
+    });
+    </script>
 </head>
 
 <body>
-    <pre id="editor">
-  public class DummyClass {
-    public static void main() {
-      System.out.println("Hello World");
+    <!-- <pre id="editor">
+    import java.util.*;
+    import java.lang.*;
+    class Rextester {
+        public static void main(String args[]) {
+            System.out.println("Hello World");
+        }
     }
-  }
-</pre>
+
+    </pre> -->
+    <pre id="editor">
+import java.util.*;
+import java.lang.*;
+
+class Rextester
+{  
+    public static void main(String args[])
+    {
+        System.out.println("Hello, World!");
+    }
+}
+    </pre>
+
     <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/java");
     </script>
+
+    <button id="run">Run</button>
+
 </body>
 
 </html>
