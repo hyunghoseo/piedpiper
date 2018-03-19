@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+
+		    var to_compile = {
+			    "LanguageChoice": "4",
+			    "Program": $("#code").val(),
+			    "Input": "",
+			    "CompilerArgs" : ""
+		    };
+
+		    $.ajax ({
+			        url: "http://rextester.com/rundotnet/api",
+			        type: "POST",
+			        data: to_compile
+			    }).done(function(data) {
+			        alert(JSON.stringify(data));
+			    }).fail(function(data, err) {
+			        alert("fail " + JSON.stringify(data) + " " + JSON.stringify(err));
+		        });
+	    });
+    });
+    </script>
+    </head>
+
+    <textarea id="code">
+        import java.util.*;
+        import java.lang.*;
+
+            class Rextester
+            {
+                public static void main(String args[])
+                {
+                    System.out.println("Hello, world!");
+                }
+            }    
+    </textarea>
+    <button id="run">Run</button>
+
+</body>
+</html>
