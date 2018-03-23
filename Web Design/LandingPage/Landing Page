@@ -1,0 +1,25 @@
+{
+  "htmlFiles": [
+    {
+      "fileId": "1zWpvpc9IkhKq1XQ2dyR36cD21akxz8Ev",
+      "contentType": "text/html",
+      "name": "index.html",
+      "path": "1XZhOQcggOakTGctJIRGFSl50eVavdw3a/"
+    }
+  ],
+  "cssFiles": [
+    {
+      "fileId": "1FiyeXHtz4gXuV7rJjD1AzEKQL3enc72X",
+      "contentType": "text/css",
+      "name": "marketing.css",
+      "path": "1XZhOQcggOakTGctJIRGFSl50eVavdw3a/css/layouts"
+    },
+    {
+      "fileId": "1veu1WI5ledu_kCEns8SqULi-FaNzP_Vr",
+      "contentType": "text/css",
+      "name": "marketing-old-ie.css",
+      "path": "1XZhOQcggOakTGctJIRGFSl50eVavdw3a/css/layouts"
+    }
+  ],
+  "javascriptFiles": []
+}
