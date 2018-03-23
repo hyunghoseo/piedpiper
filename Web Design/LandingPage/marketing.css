@@ -50,8 +50,6 @@ label {
     text-align: center;
 }
 
-
-
 /*
  * -- PURE FORM STYLES --
  * Style the form inputs and labels
@@ -64,7 +62,7 @@ label {
 }
 
 .pure-form input[type] {
-    font-family: "Roboto Slab";
+    font-family: 'Roboto Slab';
     border: 2px solid #ddd;
     box-shadow: none;
     font-size: 100%;
@@ -91,7 +89,6 @@ a.pure-button-primary {
     border-radius: 5px;
     font-size: 120%;
 }
-
 
 /*
  * -- MENU STYLES --
@@ -188,6 +185,10 @@ a.pure-button-primary {
  * -- CONTENT STYLES --
  * This represents the content area (everything below the blue section)
  */
+ .content {
+     font-family: "Roboto Slab";
+ }
+ 
 .content-wrapper {
     /* These styles are required for the "scroll-over" effect */
     position: absolute;
@@ -210,6 +211,7 @@ a.pure-button-primary {
 
 /* This is a modifier class used when the content-head is inside a ribbon */
 .content-head-ribbon {
+    font-family: "Roboto Slab";
     color: white;
 }
 
@@ -274,7 +276,6 @@ a.pure-button-primary {
     .splash-head {
         font-size: 250%;
     }
-
 
     /* We remove the border-separator assigned to .l-box-lrg */
     .l-box-lrg {
