@@ -1,0 +1,45 @@
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<head>
+    <meta name="google-signin-client_id" content="90788619195-8910esr89h0eeogsdj28m9f59jk8iup7.apps.googleusercontent.com">
+</head>
+
+<body>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <a href="#" onclick="signOut();">Sign out</a>
+</body>
+
+<script type="application/javascript">
+    function onSignIn(googleUser) {
+        var id_token = googleUser.getAuthResponse().id_token;
+        var profile = googleUser.getBasicProfile();
+        var userData = 
+            {
+                id_token: googleUser.getAuthResponse().id_token,
+                email: profile.getEmail(),
+                first_name: profile.getGivenName(),
+                last_name: profile.getFamilyName(),
+                image_url: profile.getImageUrl()
+            }
+        
+        $.ajax({
+            url: '/login',
+            method: 'POST',
+            data: userData,
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })
+    }
+
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function() {
+            console.log('User signed out.');
+        });
+    }
+</script>
