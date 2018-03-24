@@ -2,6 +2,16 @@ from flask import render_template, request
 from app import app
 from google.oauth2 import id_token
 from google.auth.transport import requests
+from pusher import Pusher
+import json
+
+pusher_client = Pusher(
+    app_id='497667',
+    key='b240a449c3e79c81f151',
+    secret='9d88d88cc785f7f4f72b',
+    cluster='us2',
+    ssl=True
+)
 
 @app.route('/')
 @app.route('/login', methods=['GET'])
@@ -27,4 +37,19 @@ def authenticate_user():
 @app.route('/ide')
 def ide_page():
     return render_template('ide.html')
+
+@app.route("/pusher/auth", methods=['POST'])
+def pusher_authentication():
+
+  auth = pusher_client.authenticate(
+    channel=request.form['channel_name'],
+    socket_id=request.form['socket_id'],
+    custom_data={
+      u'user_id': u'1',
+      u'user_info': {
+        u'twitter': u'@pusher'
+      }
+    }
+  )
+  return json.dumps(auth)
 
