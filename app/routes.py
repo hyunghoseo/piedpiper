@@ -3,7 +3,7 @@ from app import app
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from pusher import Pusher
-import json
+import json, os, subprocess
 
 pusher_client = Pusher(
     app_id='497667',
@@ -13,12 +13,21 @@ pusher_client = Pusher(
     ssl=True
 )
 
+def compile_file(fname, language):
+    if language == 'java':
+        cmd = 'javac {}'.format(fname)
+    elif language == 'swift':
+        pass
+    else:
+        print 'Unsupported language'
+    subprocess.Popen(cmd, shell=True)
+
 @app.route('/')
-@app.route('/login', methods=['GET'])
+@app.route('/login/', methods=['GET'])
 def login_page():
     return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login/', methods=['POST'])
 def authenticate_user():
     user_data = request.form.to_dict()
     token = user_data.get('id_token')
@@ -34,11 +43,11 @@ def authenticate_user():
     # Valid user
     return 'The user is valid.'
 
-@app.route('/ide')
+@app.route('/ide/')
 def ide_page():
     return render_template('ide.html')
 
-@app.route("/pusher/auth", methods=['POST'])
+@app.route('/pusher/auth/', methods=['POST'])
 def pusher_authentication():
 
   auth = pusher_client.authenticate(
@@ -53,3 +62,20 @@ def pusher_authentication():
   )
   return json.dumps(auth)
 
+@app.route('/ide/compile/', methods=['POST'])
+def compile_code():
+    file_id = request.form.get('id')
+    language = request.form.get('language')
+    program = request.form.get('program')
+    
+    fname = 'app/saved_files/{}.{}'.format(file_id, language)
+    with open(fname, 'w+') as f:
+        to_write = ''
+        for l in program.splitlines():
+            to_write += l + '\n'
+        f.write(to_write)
+        
+    compile_file(fname, language)
+    
+    print program
+    print file_id
