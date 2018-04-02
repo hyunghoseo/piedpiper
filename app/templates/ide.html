@@ -91,7 +91,7 @@
                     editor.setSession(swift);
                     editor.session.setMode('ace/mode/swift');
                 }
-            })
+            });
             
             $('#run').on('click', function(e) {
                 var code = editor.getValue(),
@@ -102,11 +102,26 @@
                     program: code
                 }
                 $.ajax({
-                    url: "/ide/compile/",
+                    url: "{{ url_for('run_code') }}",
                     type: "POST",
                     data: to_compile
-                })
-            })
+                });
+            });
+            
+            $('#save').on('click', function(e) {
+                var code = editor.getValue(),
+                    language = $("#language").val();
+                var to_save = {
+                    id: id,
+                    language: language,
+                    program: code
+                }
+                $.ajax({
+                    url: "{{ url_for('save_code') }}",
+                    type: "POST",
+                    data: to_save
+                });
+            });
         });
     </script>
 </head>

@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, url_for
 from app import app
 from google.oauth2 import id_token
 from google.auth.transport import requests
@@ -13,10 +13,20 @@ pusher_client = Pusher(
     ssl=True
 )
 
-def compile_file(fname, language):
+def save_file(fname, program):
+    with open(fname, 'w+') as f:
+        to_write = ''
+        for l in program.splitlines():
+            to_write += l + '\n'
+        f.write(to_write)
+
+def compile_file(file_id, language):
     if language == 'java':
-        cmd = 'javac {}'.format(fname)
-    elif language == 'swift':
+        dirname = 'app/saved_files/{}'.format(file_id)
+        fname = 'app/saved_files/{}.{}'.format(file_id, language)
+        os.makedirs(dirname)
+        cmd = 'javac -d {} {}'.format(dirname, fname)
+    elif fname.endswith('.swift'):
         pass
     else:
         print 'Unsupported language'
@@ -62,20 +72,28 @@ def pusher_authentication():
   )
   return json.dumps(auth)
 
-@app.route('/ide/compile/', methods=['POST'])
-def compile_code():
+@app.route('/ide/save/', methods=['POST'])
+def save_code():
     file_id = request.form.get('id')
     language = request.form.get('language')
     program = request.form.get('program')
     
     fname = 'app/saved_files/{}.{}'.format(file_id, language)
-    with open(fname, 'w+') as f:
-        to_write = ''
-        for l in program.splitlines():
-            to_write += l + '\n'
-        f.write(to_write)
-        
-    compile_file(fname, language)
+    save_file(fname, program)
+    
+    return '200' #SUCCESS
+
+@app.route('/ide/run/', methods=['POST'])
+def run_code():
+    file_id = request.form.get('id')
+    language = request.form.get('language')
+    program = request.form.get('program')
+    
+    fname = 'app/saved_files/{}.{}'.format(file_id, language)
+    save_file(fname, program)
+    compile_file(file_id, language)
     
     print program
     print file_id
+    
+    return '200' #SUCCESS
