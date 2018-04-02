@@ -20,14 +20,22 @@
             right: 0;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
     <script src="/static/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
         
     </script>
     <script>
-        $(document).ready(function() {
+        $(function() {
+            
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/twilight");
+            editor.session.setMode("ace/mode/java");
+            var EditSession = ace.require("ace/edit_session").EditSession;
+            var java = new EditSession("");
+            var swift = new EditSession("");
+            
             var id = getUrlParameter('id');
             if (!id) {
                 location.search = location.search
@@ -60,22 +68,37 @@
             var channel = pusher.subscribe(id);
         
             channel.bind('client-text-edit', function(html) {
-                editor.setValue(html)
+                editor.session.setValue(html)
             })
             
             
         
             function triggerChange (e) {
-                channel.trigger('client-text-edit', editor.getValue());
+                channel.trigger('client-text-edit', editor.session.getValue());
             }
             
-            $('#editor').on('keyup', triggerChange);
+            editor.session.on('keyup', triggerChange);
+            
+            $('#language').on('change', function(e) {
+                var language = $(this).val();
+                if (language == 'java') {
+                    swift = new EditSession(editor.session.getValue());
+                    editor.setSession(java);
+                    editor.session.setMode('ace/mode/java');
+                }                
+                else if (language == 'swift') {
+                    java = new EditSession(editor.session.getValue());
+                    editor.setSession(swift);
+                    editor.session.setMode('ace/mode/swift');
+                }
+            })
             
             $('#run').on('click', function(e) {
-                var code = editor.getValue();
+                var code = editor.getValue(),
+                    language = $("#language").val();
                 var to_compile = {
                     id: id,
-                    language: "java",
+                    language: language,
                     program: code
                 }
                 $.ajax({
@@ -90,7 +113,7 @@
 
 <body>
     <!-- <pre id="editor">     import java.util.*;     import java.lang.*;     class Rextester {         public static void main(String args[]) {             System.out.println("Hello World");         }     }     </pre> -->
-    <pre id="editor">
+    <div id="editor">
 import java.util.*;
 import java.lang.*;
 class Rextester
@@ -100,11 +123,13 @@ class Rextester
         System.out.println("Hello, World!");
     }
 }
-</pre>
-    <script>
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/twilight");
-        editor.session.setMode("ace/mode/java");
-    </script> <button id="run">Run</button> </body>
+</div>
+    <button id="run">Run</button>
+    <button id="save">Save</button>
+    <select id="language">
+        <option value="java">Java</option>
+        <option value="swift">Swift</option>
+    </select>
+</body>
 
 </html>
