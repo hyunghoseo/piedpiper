@@ -41,9 +41,11 @@ h3 {
     color: #fff;
 }
 
-.brand-title,
-.brand-tagline {
+.brand-title {
     font-family: 'Fredericka the Great';
+}
+.brand-tagline {
+    font-family: "Roboto Slab";
 }
 .brand-title {
     text-transform: uppercase;
@@ -59,6 +61,7 @@ h3 {
     list-style: none;
 }
 .nav-item {
+    font-family: "Roboto Slab";
     display: inline-block;
     *display: inline;
     zoom: 1;
@@ -79,6 +82,7 @@ h3 {
 }
 
 .content-subhead {
+    font-family: "Roboto Slab";
     text-transform: uppercase;
     color: #aaa;
     border-bottom: 1px solid #eee;
@@ -112,6 +116,7 @@ h3 {
     line-height: 1.8em;
 }
 .post-meta {
+    font-family: "Roboto Slab";
     color: #999;
     font-size: 90%;
     margin: 0;
@@ -148,6 +153,7 @@ h3 {
 }
 
 .footer {
+    font-family: "Roboto Slab";
     text-align: center;
     padding: 1em 0;
 }
