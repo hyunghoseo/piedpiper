@@ -1,0 +1,10 @@
+- radio button on register, student or teacher  
+- change registration fields to only Google acct and student/teacher toggle  
+- scheduling  
+    - student  
+        - top div: register  
+        - bottom div: booked appts  
+    - teacher  
+        - Lesson title, time, and date  
+- any time username is mentioned, do like {{username}}  
+    - keep variable name constant throughout pages  
