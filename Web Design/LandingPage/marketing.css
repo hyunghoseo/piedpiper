@@ -7,6 +7,11 @@
     box-sizing: border-box;
 }
 
+/*sign in button css*/
+.g-signin2 {
+    padding-left: 130px;
+}
+
 /*
  * -- BASE STYLES --
  * Most of these are inherited from Base, but I want to change a few.
