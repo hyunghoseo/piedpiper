@@ -1,6 +1,6 @@
-First make sure you have all the required packages by running `pip install -r requirements.txt`  
-Then `export FLASK_APP=tutorapp.py`  
-To start the server, simply `flask run` and access the app through your browser through `localhost:5000`  
+1. Install the required packages: `pip install -r requirements.txt`  
+2. Run the server: `python run.py`
+3. Access the app through your browser through `localhost:5000`  
 
 Mateusz Mroczkowski  
 John Wang  
