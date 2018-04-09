@@ -1,9 +1,9 @@
-from flask import render_template, request
+from flask import render_template, request, url_for
 from app import app
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from pusher import Pusher
-import json
+import json, os, subprocess
 
 pusher_client = Pusher(
     app_id='497667',
@@ -13,12 +13,35 @@ pusher_client = Pusher(
     ssl=True
 )
 
+def save_file(fname, program):
+    with open(fname, 'w+') as f:
+        to_write = ''
+        for l in program.splitlines():
+            to_write += l + '\n'
+        f.write(to_write)
+
+def compile_file(file_id, language):
+    dirname = 'app/saved_files/{}'.format(file_id)
+    fname = 'app/saved_files/{}.{}'.format(file_id, language)
+    os.makedirs(dirname)
+    if language == 'java':
+        cmd = 'javac -d {} {}'.format(dirname, fname)
+    elif fname.endswith('.swift'):
+        pass
+    else:
+        print 'Unsupported language'
+    subprocess.Popen(cmd, shell=True)
+    
+def run_file(file_id, language):
+    return
+    
+
 @app.route('/')
-@app.route('/login', methods=['GET'])
+@app.route('/login/', methods=['GET'])
 def login_page():
     return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login/', methods=['POST'])
 def authenticate_user():
     user_data = request.form.to_dict()
     token = user_data.get('id_token')
@@ -34,11 +57,11 @@ def authenticate_user():
     # Valid user
     return 'The user is valid.'
 
-@app.route('/ide')
+@app.route('/ide/')
 def ide_page():
     return render_template('ide.html')
 
-@app.route("/pusher/auth", methods=['POST'])
+@app.route('/pusher/auth/', methods=['POST'])
 def pusher_authentication():
 
   auth = pusher_client.authenticate(
@@ -53,3 +76,28 @@ def pusher_authentication():
   )
   return json.dumps(auth)
 
+@app.route('/ide/save/', methods=['POST'])
+def save_code():
+    file_id = request.form.get('id')
+    language = request.form.get('language')
+    program = request.form.get('program')
+    
+    fname = 'app/saved_files/{}.{}'.format(file_id, language)
+    save_file(fname, program)
+    
+    return '200' #SUCCESS
+
+@app.route('/ide/run/', methods=['POST'])
+def run_code():
+    file_id = request.form.get('id')
+    language = request.form.get('language')
+    program = request.form.get('program')
+    
+    fname = 'app/saved_files/{}.{}'.format(file_id, language)
+    save_file(fname, program)
+    compile_file(file_id, language)
+    
+    print program
+    print file_id
+    
+    return '200' #SUCCESS
