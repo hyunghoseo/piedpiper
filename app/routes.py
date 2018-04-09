@@ -21,16 +21,20 @@ def save_file(fname, program):
         f.write(to_write)
 
 def compile_file(file_id, language):
+    dirname = 'app/saved_files/{}'.format(file_id)
+    fname = 'app/saved_files/{}.{}'.format(file_id, language)
+    os.makedirs(dirname)
     if language == 'java':
-        dirname = 'app/saved_files/{}'.format(file_id)
-        fname = 'app/saved_files/{}.{}'.format(file_id, language)
-        os.makedirs(dirname)
         cmd = 'javac -d {} {}'.format(dirname, fname)
     elif fname.endswith('.swift'):
         pass
     else:
         print 'Unsupported language'
     subprocess.Popen(cmd, shell=True)
+    
+def run_file(file_id, language):
+    return
+    
 
 @app.route('/')
 @app.route('/login/', methods=['GET'])
