@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for
+from flask import render_template, request, url_for, redirect, session
 from app import app
 from google.oauth2 import id_token
 from google.auth.transport import requests
@@ -50,12 +50,23 @@ def authenticate_user():
         if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
             raise ValueError('Wrong issuer.')
         user_data['user_id'] = idinfo['sub']
+
+        if db.check_if_email_exists(user_data['email']):
+            session['email'] = user_data['email']
+            return redirect(url_for('ide_page'))
+        else:
+            return 'Registration'
     except ValueError as e:
         # Invalid user
         return str(e);
     
     # Valid user
     return 'The user is valid.'
+
+@app.route('/logout/', methods=['POST'])
+def logout():
+    session.pop('email', None)
+    return 'done'
 
 @app.route('/ide/')
 def ide_page():
