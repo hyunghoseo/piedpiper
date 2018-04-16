@@ -26,29 +26,25 @@ def createdb():
 
     conn.execute ('pragma foreign_keys=on')
     conn.execute('begin transaction')
-    conn.execute('CREATE TABLE IF NOT EXISTS user_account( userid bigint PRIMARY KEY ,firstname TEXT, lastname TEXT, email TEXT, imageurl TEXT, accounttype int, directory TEXT)')#accounttype 0 for student, 1 for teacher
+    conn.execute('CREATE TABLE IF NOT EXISTS user_account( userid bigint PRIMARY KEY ,firstname TEXT, lastname TEXT, email TEXT, imageurl TEXT, accounttype int)')#accounttype 0 for student, 1 for teacher
 
-    conn.execute ('CREATE TABLE IF NOT EXISTS schedules ( teacherid bigint, time TEXT,   studentid bigint  DEFAULT 0, FOREIGN KEY(teacherid) REFERENCES user_account(userid),FOREIGN KEY(studentid) REFERENCES user_account(userid))')
+    conn.execute ('CREATE TABLE IF NOT EXISTS schedules ( teacherid bigint, time TEXT, studentid bigint  DEFAULT 0, FOREIGN KEY(teacherid) REFERENCES user_account(userid),FOREIGN KEY(studentid) REFERENCES user_account(userid))')
 
     conn.close()
 
-def newuserdirectory(email):
-    os.mkdir(email,0755)
-    return os.getcwd()+"/"+email
-
-def check_if_user_exists(email):
+def check_if_user_exists(userid):
     conn = sqlite3.connect ('piedPiper.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM user_account WHERE email = (?)",(email,))
+    c.execute("SELECT * FROM user_account WHERE userid = (?)",(userid,))
     rows = c.fetchall()
     conn.close()
     return len(rows)!=0
-def insert_new_user(userid,firstname, lastname, email, imageurl, accounttype):
+def insert_new_user(userid, firstname, lastname, email, imageurl, accounttype):
     if check_if_user_exists(userid):
         raise UserExistsError()
     conn = sqlite3.connect ('piedPiper.db')
     c = conn.cursor()
-    c.execute("INSERT INTO user_account(userid, firstname, lastname, email, imageurl, accounttype, directory) VALUES (?,?,?,?,?,?,?)", (userid,firstname, lastname, email,imageurl,accounttype,newuserdirectory(email)))
+    c.execute("INSERT INTO user_account(userid, firstname, lastname, email, imageurl, accounttype) VALUES (?,?,?,?,?,?)", (userid, firstname, lastname, email, imageurl, accounttype))
     conn.commit()
     conn.close()
 
@@ -110,26 +106,4 @@ def update_userInfo_accounttype(accounttype):
     c = conn.cursor()
     c.execute("UPDATE user_account SET accounttype = ? WHERE userid = ?",(accounttype, userid))
     rows = c.fetchall()
-    conn.close()
-
-def check_if_file_exists(filename, directory):
-    return os.path.isfile(directory + "/" + filename + ".txt")
-def save_ide_state(userid, filename, programtext):
-    con = sqlite3.connect('piedPiper.db')
-    c = conn.cursor()
-    c.execute("SELECT directory FROM user_account WHERE userid = ?",(userid,))
-    row = c.fetchall()
-    if check_if_file_exists(filename, row):
-        raise FileExistsError()
-    program_file = open(row+"/"+filename+".txt", "w")
-    program_file.write(programtext)
-    program_file.close()
-    conn.close()
-def delete_ide_state(userid, filename):
-    con = sqlite3.connect('piedPiper.db')
-    c = conn.cursor()
-    c.execute("SELECT directory FROM user_account WHERE userid = ?",(userid,))
-    row = c.fetchall()
-    if check_if_file_exists(filename, row):
-        os.remove(row+"/"+filename+".txt")
     conn.close()

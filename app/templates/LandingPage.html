@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>   
     <meta name="google-signin-client_id" content="90788619195-8910esr89h0eeogsdj28m9f59jk8iup7.apps.googleusercontent.com">
 
-    <title>Piper Academy</title>
+    <title>Piper Academy - Welcome</title>
 
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 <!--[if lte IE 8]>
@@ -67,7 +67,7 @@
 
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked" action="/registration?" target="_self" method="post">
+                <form class="pure-form pure-form-stacked" action="/register/" target="_self" method="post">
                     <fieldset>
                         <a id="registration" name="registration"></a> 
                         <label for="name">Your Name</label>
@@ -112,18 +112,23 @@
             }
         
         $.ajax({
-            url: '/login',
-            method: 'POST',
+            url: "{{ url_for('authenticate_user') }}",
+            method: "POST",
             data: userData,
             success: function(response) {
-                console.log(response);
+                console.log(response)
+                if (response == "registered") {
+                    window.location.href = "{{ url_for('home') }}";
+                }
+                else {
+                    $("html, body").scrollTop($("#registration").offset().top);
+                }
             },
             error: function(error) {
                 console.log(error);
             }
         })
     }
-
     function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function() {
