@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tutoring by nerds, for nerds">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>   
+    <meta name="google-signin-client_id" content="90788619195-8910esr89h0eeogsdj28m9f59jk8iup7.apps.googleusercontent.com">
+
+    <title>Piper Academy - Welcome</title>
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+<!--<![endif]-->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/marketing.css') }}">
+    <!--<![endif]-->
+</head>
+<body>
+    
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">Piper Academy</a>
+
+    </div>
+</div>
+
+<div class="splash-container">
+    <div class="splash">
+        <h1 class="splash-head">Welcome to Piper Academy</h1>
+        <p class="splash-subhead">
+            Tutoring for nerds, by nerds.
+        </p>
+        <!--<a href="" class="pure-button pure-button-primary">Log In</a>-->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+        <!--<a href="#" onclick="signOut();">Sign out</a>-->
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div class="content">
+    </div>
+    <div class="ribbon l-box-lrg pure-g">
+
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+
+            <h2 class="content-head content-head-ribbon">This is the future of learning.</h2>
+
+            <p>
+                We are a website-based teaching service that connects tutors and students for one-on-one tutoring sessions conducted via webcam and a shared IDE. We provide a secure, stable service with an intuitive interface and easy account creation and integration with Google. Students and tutors will be able to schedule sessions through an interactive calendar.
+            </p>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2 class="content-head is-center"> Ready to dive in? </h2>
+
+        <div class="pure-g">
+            <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+                <form class="pure-form pure-form-stacked" action="/register/" target="_self" method="post">
+                    <fieldset>
+                        <a id="registration" name="registration"></a> 
+                        <label for="name">Your Name</label>
+                        <input name = "name" id="name" type="text" placeholder="Your Name" required>
+
+                        <label for="option-student" class="pure-radio">
+                        <input id="option-student" type="radio" name="optionsRadios" value="0" checked>
+                            <div class="student_rad">Student</div>
+                        </label>
+                        
+                        <label for="option-teacher" class="pure-radio">
+                        <input id="option-teacher" type="radio" name="optionsRadios" value="1"> <div class="teacher_rad">Teacher</div>
+                        </label>
+
+                        <button type="submit" class="pure-button">Register</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
+                <h4>Contact Us</h4>
+                <p>
+                    Just kidding we aren't a real company                </p>
+            </div>
+        </div>
+    </div>
+    <div class="footer l-box is-center">
+        Made with love in CS347
+    </div>
+</div>
+</body>
+<script type="application/javascript">
+    function onSignIn(googleUser) {
+        var id_token = googleUser.getAuthResponse().id_token;
+        var profile = googleUser.getBasicProfile();
+        var userData = 
+            {
+                id_token: googleUser.getAuthResponse().id_token,
+                email: profile.getEmail(),
+                first_name: profile.getGivenName(),
+                last_name: profile.getFamilyName(),
+                image_url: profile.getImageUrl()
+            }
+        
+        $.ajax({
+            url: "{{ url_for('authenticate_user') }}",
+            method: "POST",
+            data: userData,
+            success: function(response) {
+                console.log(response)
+                if (response == "registered") {
+                    window.location.href = "{{ url_for('home') }}";
+                }
+                else {
+                    $("html, body").scrollTop($("#registration").offset().top);
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })
+    }
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function() {
+            console.log('User signed out.');
+        });
+    }
+</script>
+</html>

@@ -1,45 +1,27 @@
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-<head>
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="90788619195-8910esr89h0eeogsdj28m9f59jk8iup7.apps.googleusercontent.com">
-</head>
-
-<body>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <a href="#" onclick="signOut();">Sign out</a>
-</body>
-
-<script type="application/javascript">
-    function onSignIn(googleUser) {
-        var id_token = googleUser.getAuthResponse().id_token;
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
-        var userData = 
-            {
-                id_token: googleUser.getAuthResponse().id_token,
-                email: profile.getEmail(),
-                first_name: profile.getGivenName(),
-                last_name: profile.getFamilyName(),
-                image_url: profile.getImageUrl()
-            }
-        
-        $.ajax({
-            url: '/login',
-            method: 'POST',
-            data: userData,
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        })
-    }
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
 
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function() {
-            console.log('User signed out.');
-        });
-    }
-</script>
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+  </body>
+</html>
