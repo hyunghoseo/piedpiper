@@ -1,10 +1,11 @@
-- radio button on register, student or teacher  
-- change registration fields to only Google acct and student/teacher toggle  
+- radio button on register, student or teacher X Done  
+- change registration fields to only Google acct and student/teacher toggle X  
 - scheduling  
     - student  
-        - top div: register  
-        - bottom div: booked appts  
+        - top div: register Aman  
+        - bottom div: booked appts Hannah  
     - teacher  
-        - Lesson title, time, and date  
-- any time username is mentioned, do like {{username}}  
+        - Lesson title, time, and date Gabby  
+- any time username is mentioned, do like {{user}} X Gabby  
     - keep variable name constant throughout pages  
+- IDE div X Hannah  
