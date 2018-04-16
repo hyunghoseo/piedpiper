@@ -36,10 +36,10 @@ def newuserdirectory(email):
     os.mkdir(email,0755)
     return os.getcwd()+"/"+email
 
-def check_if_user_exists(userid):
+def check_if_user_exists(email):
     conn = sqlite3.connect ('piedPiper.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM user_account WHERE userid = (?)",(userid,))
+    c.execute("SELECT * FROM user_account WHERE email = (?)",(email,))
     rows = c.fetchall()
     conn.close()
     return len(rows)!=0
@@ -80,7 +80,7 @@ def insert_new_schedule(teacherid,time):
     c.execute("INSERT INTO schedules ( teacherid , time) VALUES (?,?)", (teacherid, time))
     conn.commit()
     conn.close()
-def delete_schedule(teacherid,time)
+def delete_schedule(teacherid,time):
     conn = sqlite3.connect ('piedPieper.db')
     c.execute("DELETE FROM schedules WHERE teacherid = ? AND time = ?", (teacherid, time))
     conn.commit()

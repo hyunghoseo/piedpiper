@@ -6,6 +6,9 @@ from pusher import Pusher
 import json, os, subprocess
 import db
 
+id_num_global = 0
+db.createdb()
+
 pusher_client = Pusher(
     app_id='497667',
     key='b240a449c3e79c81f151',
@@ -36,10 +39,15 @@ def compile_file(file_id, language):
 def run_file(file_id, language):
     return
     
+@app.route('/home/', methods=['GET'])
+def home():
+    if 'email' not in session:
+        return redirect(url_for('index'))
+    return render_template('HomePage.html', user = db.get_userInfo(session['email'])[0][0])
 
 @app.route('/')
 @app.route('/login/', methods=['GET'])
-def login_page():
+def index():
     return render_template('login.html')
 
 @app.route('/login/', methods=['POST'])
@@ -54,9 +62,11 @@ def authenticate_user():
 
         if db.check_if_email_exists(user_data['email']):
             session['email'] = user_data['email']
-            return redirect(url_for('ide_page'))
+            return redirect(url_for('home'))
         else:
-            return 'Registration'
+            session['unregistered'] = auth['email']
+            return 'registration'
+
     except ValueError as e:
         # Invalid user
         return str(e);
@@ -68,6 +78,21 @@ def authenticate_user():
 def logout():
     session.pop('email', None)
     return 'done'
+
+@app.route('/register/', methods=['POST'])
+def register():
+    if 'unregistered' not in session:
+        return redirect(url_for('index'))
+
+    auth = request.form.to_dict()
+
+    db.insert_new_user(id_num_global,auth['name'], '', session['unregistered'], '', int (auth['optionsRadios']))
+    print int(auth['optionsRadios'])
+    session['email'] = session['unregistered']
+    session.pop('unregistered',None)                  
+    
+    return redirect(url_for('home'))
+
 
 @app.route('/ide/')
 def ide_page():
