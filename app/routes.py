@@ -103,7 +103,7 @@ def register():
     )
     session['registered'] = True                
     
-    return(redirect(url_for('home')))
+    return "200"
 
 
 @app.route('/ide/')
