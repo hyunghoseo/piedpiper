@@ -47,14 +47,27 @@
     </div>
 </div>
 
+    
+<div id="accounttype_modal" class="modal">
+    <div class="modal-content">
+        <p>Hey, this is your first time signing into our site! Please specify whether you're a student or a teacher.</p>
+        <div class="is-center" style="margin-bottom: 10px">
+            <a class="pure-button pure-u-1" onClick="register(0);">STUDENT</a>
+        </div>
+        <div class="is-center">
+            <a class="pure-button pure-u-1" onClick="register(1);" style="background-color: coral">TEACHER</a>
+        </div>
+    </div>
+</div>
+    
 <div class="content-wrapper">
     <div class="content">
     </div>
-    <div class="ribbon l-box-lrg pure-g">
+    <div class="ribbon l-box-lrg pure-g is-center">
 
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+        <div class="pure-u-1">
 
-            <h2 class="content-head content-head-ribbon">This is the future of learning.</h2>
+            <h2 class="is-center content-head content-head-ribbon">This is the future of learning.</h2>
 
             <p>
                 We are a website-based teaching service that connects tutors and students for one-on-one tutoring sessions conducted via webcam and a shared IDE. We provide a secure, stable service with an intuitive interface and easy account creation and integration with Google. Students and tutors will be able to schedule sessions through an interactive calendar.
@@ -66,27 +79,7 @@
         <h2 class="content-head is-center"> Ready to dive in? </h2>
 
         <div class="pure-g">
-            <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked" action="/register/" target="_self" method="post">
-                    <fieldset>
-                        <a id="registration" name="registration"></a> 
-                        <label for="name">Your Name</label>
-                        <input name = "name" id="name" type="text" placeholder="Your Name" required>
-
-                        <label for="option-student" class="pure-radio">
-                        <input id="option-student" type="radio" name="optionsRadios" value="0" checked>
-                            <div class="student_rad">Student</div>
-                        </label>
-                        
-                        <label for="option-teacher" class="pure-radio">
-                        <input id="option-teacher" type="radio" name="optionsRadios" value="1"> <div class="teacher_rad">Teacher</div>
-                        </label>
-
-                        <button type="submit" class="pure-button">Register</button>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
+            <div class="pure-u-1">
                 <h4>Contact Us</h4>
                 <p>
                     Just kidding we aren't a real company                </p>
@@ -121,7 +114,7 @@
                     window.location.href = "{{ url_for('home') }}";
                 }
                 else {
-                    $("html, body").scrollTop($("#registration").offset().top);
+                    $("#accounttype_modal").show();
                 }
             },
             error: function(error) {
@@ -129,11 +122,25 @@
             }
         })
     }
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function() {
-            console.log('User signed out.');
-        });
+    
+    function register(accounttype) {
+        $.ajax({
+            url: "{{ url_for('register') }}",
+            type: "POST",
+            data: {accounttype: accounttype},
+            success: function(response) {
+                console.log(response);
+                if (response == "200") {
+                    window.location.href = "{{ url_for('home') }}";
+                }
+                else {
+                    window.location.reload();
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })
     }
 </script>
 </html>

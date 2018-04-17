@@ -89,7 +89,7 @@ def register():
     if session.get('registered'):
         return redirect(url_for('home'))
 
-    auth = request.form.to_dict()
+    accounttype = int( request.form.get('accounttype') )
 
     user_data = session['user_data']
     
@@ -99,7 +99,7 @@ def register():
         user_data['last_name'],
         user_data['email'],
         user_data['image_url'],
-        int (auth['optionsRadios'])
+        accounttype
     )
     session['registered'] = True                
     
