@@ -14,6 +14,8 @@ Ideas:
     - Psychologial support app  
         - sign up as supporter or supportee  
     - Crowdsourced "what dogs are on campus?" app  
-        - rate dogs  
-        - toggle whether or not owner will let you pet the dog  
-        
+        - This app will allow college students to pin where dogs are on campus in real time. 
+        Students can then down vote the pin if the dog has left. They can also 
+        indicate whether or not the dog owner is willing to let students pet 
+        the dog. Students near the dog will be able to rate it on how much of 
+        a good boy it is.
