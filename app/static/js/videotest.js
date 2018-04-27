@@ -194,10 +194,11 @@ function handleIceCandidate(event) {
 
 function sendData() {
   var text = document.createElement("P");
-  text.appendChild(document.createTextNode(sendText.value));
+  text.appendChild(document.createTextNode(user + ": " + sendText.value));
   chatlog.appendChild(text);
-  sendChannel.send(sendText.value);
+  sendChannel.send(user + ": " + sendText.value);
   sendText.value = '';
+  chatlog.scrollTop = chatlog.scrollHeight;
 }
 
 function handleRemoteStreamAdded(event) {

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tutoring by nerds, for nerds">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> 
+    <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+    <script src="{{ url_for('static', filename='ace/ace.js') }}" type="text/javascript" charset="utf-8"></script>  
+    <meta name="google-signin-client_id" content="90788619195-8910esr89h0eeogsdj28m9f59jk8iup7.apps.googleusercontent.com">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <title>Piper Academy - Editor</title>
+
+    <style type="text/css" media="screen">
+        body {
+            overflow: hidden;
+        }
+        #buttons {
+            height: 45px;
+        }
+        #buttons > button {
+            background-color:darkseagreen
+        }
+        #editor {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: calc(100% - 300px);
+        }
+        #console {
+            width: 100%;
+            height: 240px;
+            max-height: 240px;
+            overflow-y: scroll;
+            background-color:whitesmoke;
+            border: 1px solid black;
+        }
+        #chatlog {
+            border: 1px solid black;
+            background-color: whitesmoke;
+            width: 95%;
+            height: 420px;
+            max-height: 420px;
+            margin-top: 10px;
+            overflow-y: scroll;
+        }
+        #chatlog > p, #console > p {
+            margin-left: 5px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        #text {
+            height: 35px;
+            width: 70%;
+        }
+        #localVideo {
+            position: absolute;
+            width: 152px;
+            height: 115px;
+            margin-top: 213px;
+            background-color: white;
+            z-index: 100px;
+            border: 1px solid black;
+        }
+        #remoteVideo {
+            width: 95%;
+            height: 328px;
+            background-color: white;
+        }
+        #file_list {
+            max-height: 600px;
+            overflow-y: scroll;
+        }
+        #file_list > p {
+            margin: 0
+        }
+    </style>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/pure-offset.css') }}">
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+<!--<![endif]-->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/marketing.css') }}">
+    <!--<![endif]-->
+</head>
+<body>
+    
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="{{ url_for('home') }}">Piper Academy</a>
+
+    </div>
+</div>
+
+<div class="splash-container" style="height: 100%; margin-top:60px">
+    <div class="l-box-lrg pure-g">
+        <div class="pure-u-1-3" style="width: 460px;">
+            <div id="videos">
+                <video id="localVideo" autoplay muted playsinline></video>
+                <video id="remoteVideo" autoplay playsinline></video>
+            </div>
+            <div id="chatlog"></div>
+            <form style="margin-top: 5px" class="pure-form">
+                <input id="text" name="text" type="text" />
+                <button type="button" id="sendText" onclick="sendData()" class="pure-button" style="margin-left:7px; margin-top: -15px;">Send</button>
+            </form>
+        </div>
+        <div class="pure-u-2-3" style="width: calc(100% - 460px)">
+            <form id="buttons" class="pure-form" onsubmit="return;">
+                <select id="language">
+        <option value="java">Java</option>
+        <option value="swift">Swift</option>
+    </select>
+                <button class="pure-button" type="button" id="run">Run</button>
+                <label for="prompt_user" style="color: white;">
+                    <input id="prompt_user" type="checkbox" style="width:auto"> Prompt for user input
+                </label>
+                <input type="text" placeholder="File Name" id="filename" style="width: auto; margin-bottom: 0" />
+                <button class="pure-button" type="button" id="save">Save</button>
+                <button class="pure-button" type="button" id="open">Open</button>
+            </form>
+        <div id="editor">
+import java.util.*;
+import java.lang.*;
+class Rextester
+{
+    public static void main(String args[])
+    {
+        System.out.println("Hello, World!");
+    }
+}
+</div>
+            <div id="console"></div>
+        </div>
+    </div>
+</div>
+
+    
+<div id="user_input_modal" class="modal">
+    <div class="modal-content">
+        User Input<span class="close">&times;</span>
+        <textarea id="user_input" placeholder="User input" style="width: 100%"></textarea>
+        <div class="is-center" style="margin-bottom: 10px">
+            <a class="pure-button pure-u-1-2" id="run_input">Run</a>
+        </div>
+    </div>
+</div>
+    
+<div id="open_file_modal" class="modal">
+    <div class="modal-content">
+        Open FIle<span class="close">&times;</span>
+        <div id="file_list"></div>
+    </div>
+</div>
+    <!--
+<div class="content-wrapper">
+    <div class="ribbon l-box-lrg pure-g">
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-2 offset-md-1-4 offset-lg-1-4">
+            <h2 class="is-center content-head content-head-ribbon">This is the future of learning.</h2>
+            <p>
+                We are a website-based teaching service that connects tutors and students for one-on-one tutoring sessions conducted via webcam and a shared IDE. We provide a secure, stable service with an intuitive interface and easy account creation and integration with Google. Students and tutors will be able to schedule sessions through an interactive calendar.
+            </p>
+        </div>
+    </div>
+
+    <div class="l-box-lrg pure-g">
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-2 offset-md-1-4 offset-lg-1-4">
+            <h2 class="content-head is-center"> Ready to dive in? </h2>
+            <h4>Contact Us</h4>
+            <p>
+                Just kidding we aren't a real company
+            </p>
+        </div>
+    </div>
+    <div class="footer l-box is-center">
+        Made with love in CS347
+    </div>
+</div>-->
+</body>
+<script>
+    
+            var room = '{{room}}';
+    var user = '{{user}}';
+    </script>
+  <script src="{{url_for('static', filename='js/lib/socket.io.js')}}"></script>
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="{{url_for('static', filename='js/videotest.js')}}"></script>
+<script>
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/twilight");
+            editor.session.setMode("ace/mode/java");
+    
+            var EditSession = ace.require("ace/edit_session").EditSession;
+            var java = new EditSession("");
+            var swift = new EditSession("");
+
+            var pusher = new Pusher('b240a449c3e79c81f151', {
+                cluster: 'us2',
+                encrypted: true,
+                authEndpoint: '/pusher/auth/'
+            });
+
+            var channel = pusher.subscribe(room);
+        
+            channel.bind('client-text-edit', function(html) {
+                editor.session.setValue(html)
+            });
+            function triggerChange() {
+                channel.trigger('client-text-edit', editor.session.getValue());
+            }
+            editor.on('change', function(e) {
+                if (editor.curOp && editor.curOp.command.name) {
+                    triggerChange();
+                }
+            });
+            
+            function openFile(filename) {
+                $('#open_file_modal').hide();
+                $.ajax({
+                    url: "{{ url_for('get_file_content') }}",
+                    type: "POST",
+                    data: { filename: filename },
+                    success: function(text) {
+                        editor.session.setValue(text);
+                        triggerChange();
+                        var withoutdot = filename.substr(0, filename.indexOf('.'));
+                        $('#filename').val(withoutdot);
+                    }
+                })
+            }
+        $(function() {
+            
+            
+            $('#language').on('change', function(e) {
+                var language = $(this).val();
+                if (language == 'java') {
+                    swift = new EditSession(editor.session.getValue());
+                    editor.setSession(java);
+                    editor.session.setMode('ace/mode/java');
+                }                
+                else if (language == 'swift') {
+                    java = new EditSession(editor.session.getValue());
+                    editor.setSession(swift);
+                    editor.session.setMode('ace/mode/swift');
+                }
+            });
+            
+            $('#run').on('click', function(e) {
+                if ($('#prompt_user').prop('checked')) {
+                    $('#user_input').val('');
+                    $('#user_input_modal').show();
+                    return;
+                }
+                var code = editor.getValue(),
+                    language = $("#language").val(),
+                    filename = $('#filename').val();
+                if(!filename) {
+                    window.alert("Please input a file name");
+                    return;
+                }
+                var to_compile = {
+                    id: filename,
+                    language: language,
+                    program: code
+                }
+                $.ajax({
+                    url: "{{ url_for('run_code') }}",
+                    type: "POST",
+                    data: to_compile,
+                    success: function(output) {
+                        var output_arr = output.split('\n');
+                        $.each(output_arr, function(key, value) {
+                            $('#console').append($('<p></p>').text(value));  
+                        });
+                        $('#console').scrollTop($('#console').prop('scrollHeight'));   
+                    }
+                });
+            });
+            
+            $('#run_input').on('click', function(e) {
+                $('#user_input_modal').hide();
+                var code = editor.getValue(),
+                    language = $("#language").val(),
+                    filename = $('#filename').val();
+                if(!filename) {
+                    window.alert("Please input a file name");
+                    return
+                }
+                var to_compile = {
+                    id: filename,
+                    language: language,
+                    program: code,
+                    input: $('#user_input').val()
+                }
+                $.ajax({
+                    url: "{{ url_for('run_code') }}",
+                    type: "POST",
+                    data: to_compile,
+                    success: function(output) {
+                        var output_arr = output.split('\n');
+                        $.each(output_arr, function(key, value) {
+                            $('#console').append($('<p></p>').text(value));  
+                        });
+                        $('#console').scrollTop($('#console').prop('scrollHeight'));
+                    }
+                });
+            });
+            
+            $('#open').on('click', function(e) {
+                $('#open_file_modal').show();
+                $('#file_list').html('');
+                $.ajax({
+                    url: "{{ url_for('get_files') }}",
+                    type: "POST",
+                    success: function(file_list) {
+                        $.each(file_list, function(key, value) {
+                            $('#file_list').append($('<p><a href="#" onclick="openFile(\''+value+'\')">' + value + '</a></p>'));  
+                        });
+                    }
+                });
+            });
+            
+            $('#save').on('click', function(e) {
+                var code = editor.getValue(),
+                    language = $("#language").val(),
+                    filename = $('#filename').val();
+                if(!filename) {
+                    window.alert("Please input a file name");
+                    return;
+                }
+                var to_save = {
+                    id: filename,
+                    language: language,
+                    program: code
+                }
+                $.ajax({
+                    url: "{{ url_for('save_code') }}",
+                    type: "POST",
+                    data: to_save
+                });
+            });
+            
+            
+            $("#text").on('keyup', function (e) {
+                if (e.keyCode == 13) {
+                    sendData();
+                }
+            });
+            
+            $('.close').click(function(e) {
+                $(e.target).parents('.modal').hide();
+            })
+        });
+    </script>
+</html>
