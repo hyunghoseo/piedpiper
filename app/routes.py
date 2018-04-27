@@ -235,8 +235,6 @@ def create_or_join(sid, data):
     numClients = len(connected_particpants[data])
     if numClients == 1:
         sio.emit('created', data)
-    elif numClients > 2:
-        sio.emit('full')
     elif numClients == 2:
         sio.emit('joined')
         sio.emit('join')

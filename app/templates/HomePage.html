@@ -62,7 +62,7 @@
                 <!-- A single appointment -->
                 <section class="post">
                     <header class="post-header">
-                        <img class="post-avatar" alt="an apple" height="48" width="48" src="https://art.ngfiles.com/images/404000/404664_thexxxreaper_pixel-apple.png?f1454891997">
+                        <img class="post-avatar" alt="an apple" height="48" width="48" src="{{ url_for('static', filename='favicon.ico') }}">
 
                         <h2 class="post-title">Piper Academy</h2>
 
@@ -81,22 +81,22 @@
 
                 <section class="post">
                     <header class="Java for Dummies">
-                        <img class="post-avatar" alt="Eric Ferraiuolo&#x27;s avatar" height="48" width="48" src="img//ericf-avatar.png">
+                        <!--<img class="post-avatar" alt="Eric Ferraiuolo&#x27;s avatar" height="48" width="48" src="img//ericf-avatar.png"> -->
 
                         <h2 class="post-title">Java for Dummies</h2>
 
                         <p class="post-meta">
-                            With <a class="post-author" href="#">Exampleman McTutorname Jr.</a>, Language <a class="post-category post-category-js" href="#">Java</a>
+                            With <a class="post-author" href="#">Hyungho Seo</a>, Language <a class="post-category post-category-js" href="#">Java</a>
                         </p>
                     </header>
 
                     <div class="post-description">
                         <p>
-                            Date:
+                            Date: April 30, 2018
                             <br>
-                            Time:
+                            Time: 1:00 PM
                             <br>
-                            Length
+                            <a href="{{ url_for('room', room='presence-damompoulos-is-the-best') }}">CLICK HERE TO JOIN SESSION</a>
                         </p>
                     </div>
                 </section>

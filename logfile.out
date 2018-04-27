@@ -2395,3 +2395,55 @@ time: 2018-04-26 22:45:47.688992 Action: Received Disconnect message from 0df5b0
 time: 2018-04-26 22:45:47.694738 Action: Received Disconnect message from 9b01875146604948bbbd0d3554baab58 
 time: 2018-04-26 22:46:08.263818 Action: Received Disconnect message from a603612c080a4c26927fa6bd9cff6a8b 
 time: 2018-04-26 22:46:08.270061 Action: Received Disconnect message from bdda28d3cad443c1bf8db612e46e787b 
+time: 2018-04-27 11:10:31.012714 Action: Received Disconnect message from a734c8e96b6b4d9e8d9ed5db9c22bc2d 
+time: 2018-04-27 11:10:31.018063 Action: Removed a734c8e96b6b4d9e8d9ed5db9c22bc2d from default 
+ list of left participants is [] 
+time: 2018-04-27 11:11:13.459943 Action: Received Disconnect message from 2b370a80b59e483db2411afef74c5bca 
+time: 2018-04-27 11:11:13.466396 Action: Removed 2b370a80b59e483db2411afef74c5bca from default 
+ list of left participants is [] 
+time: 2018-04-27 11:13:30.508176 Action: Received Disconnect message from 97da5dee6de843419e5bafe517e95792 
+time: 2018-04-27 11:13:30.515971 Action: Removed 97da5dee6de843419e5bafe517e95792 from default 
+ list of left participants is ['ceb219025ae2454b8970dc94bde34f3c', 'f548ca0b24174efeafb664787966b17f'] 
+time: 2018-04-27 11:13:30.527050 Action: Received Disconnect message from f548ca0b24174efeafb664787966b17f 
+time: 2018-04-27 11:13:30.532648 Action: Removed f548ca0b24174efeafb664787966b17f from default 
+ list of left participants is ['ceb219025ae2454b8970dc94bde34f3c'] 
+time: 2018-04-27 11:13:30.540876 Action: Received Disconnect message from ceb219025ae2454b8970dc94bde34f3c 
+time: 2018-04-27 11:13:30.549920 Action: Removed ceb219025ae2454b8970dc94bde34f3c from default 
+ list of left participants is [] 
+time: 2018-04-27 11:13:58.121774 Action: Received Disconnect message from 254f3de8a7c34298bdd8004163a284cb 
+time: 2018-04-27 11:13:58.128547 Action: Removed 254f3de8a7c34298bdd8004163a284cb from default 
+ list of left participants is ['2a2b998dde5d4dd8b11a11d14de68391'] 
+time: 2018-04-27 11:14:00.983515 Action: Received Disconnect message from 220a7546e99646fb8c5ead097632d104 
+time: 2018-04-27 11:14:00.989693 Action: Removed 220a7546e99646fb8c5ead097632d104 from default 
+ list of left participants is ['2a2b998dde5d4dd8b11a11d14de68391'] 
+time: 2018-04-27 11:14:04.094494 Action: Received Disconnect message from 23cd6e5fbaa6497398b3ed377d5472c9 
+time: 2018-04-27 11:14:04.101696 Action: Remove 23cd6e5fbaa6497398b3ed377d5472c9 from default 
+ list of left participants is ['2a2b998dde5d4dd8b11a11d14de68391', '8d12e8e156e74380a4c40f0a11fd129d'] has failed 
+time: 2018-04-27 11:14:05.093422 Action: Received Disconnect message from 04fcb659dadd4afa8d4141923a24334b 
+time: 2018-04-27 11:14:05.101396 Action: Remove 04fcb659dadd4afa8d4141923a24334b from default 
+ list of left participants is ['2a2b998dde5d4dd8b11a11d14de68391', '8d12e8e156e74380a4c40f0a11fd129d'] has failed 
+time: 2018-04-27 11:14:10.562368 Action: Received Disconnect message from 2a2b998dde5d4dd8b11a11d14de68391 
+time: 2018-04-27 11:14:10.569796 Action: Removed 2a2b998dde5d4dd8b11a11d14de68391 from default 
+ list of left participants is ['8d12e8e156e74380a4c40f0a11fd129d'] 
+time: 2018-04-27 11:14:15.859033 Action: Received Disconnect message from 8d12e8e156e74380a4c40f0a11fd129d 
+time: 2018-04-27 11:14:15.865406 Action: Removed 8d12e8e156e74380a4c40f0a11fd129d from default 
+ list of left participants is ['1cba4593f7bb4b2dbd729ddb5d427f6e'] 
+time: 2018-04-27 11:14:28.638335 Action: Received Disconnect message from a207274d2f354950ad4ece4278a3e9ef 
+time: 2018-04-27 11:14:28.646178 Action: Removed a207274d2f354950ad4ece4278a3e9ef from default 
+ list of left participants is ['1cba4593f7bb4b2dbd729ddb5d427f6e'] 
+time: 2018-04-27 11:14:29.969328 Action: Received Disconnect message from 1cba4593f7bb4b2dbd729ddb5d427f6e 
+time: 2018-04-27 11:14:29.975163 Action: Removed 1cba4593f7bb4b2dbd729ddb5d427f6e from default 
+ list of left participants is [] 
+time: 2018-04-27 11:16:52.022312 Action: Received Disconnect message from 2629e11f0ade47fcb76e94b49340db13 
+time: 2018-04-27 11:16:52.029068 Action: Removed 2629e11f0ade47fcb76e94b49340db13 from default 
+ list of left participants is ['683f4af8b8ca45e7a96cff5bb6f2bca1'] 
+time: 2018-04-27 11:25:40.052128 Action: Received Disconnect message from 4ce584eb55c843aa8b317928fb3e82d1 
+time: 2018-04-27 11:25:40.059543 Action: Remove 4ce584eb55c843aa8b317928fb3e82d1 from default 
+ list of left participants is ['683f4af8b8ca45e7a96cff5bb6f2bca1'] has failed 
+time: 2018-04-27 11:25:40.065771 Action: Removed 4ce584eb55c843aa8b317928fb3e82d1 from presence-damompoulos-is-the-best 
+ list of left participants is [] 
+time: 2018-04-27 11:25:49.227809 Action: Received Disconnect message from 683f4af8b8ca45e7a96cff5bb6f2bca1 
+time: 2018-04-27 11:25:49.232412 Action: Removed 683f4af8b8ca45e7a96cff5bb6f2bca1 from default 
+ list of left participants is [] 
+time: 2018-04-27 11:25:49.236985 Action: Remove 683f4af8b8ca45e7a96cff5bb6f2bca1 from presence-damompoulos-is-the-best 
+ list of left participants is [] has failed 
