@@ -2447,3 +2447,90 @@ time: 2018-04-27 11:25:49.232412 Action: Removed 683f4af8b8ca45e7a96cff5bb6f2bca
  list of left participants is [] 
 time: 2018-04-27 11:25:49.236985 Action: Remove 683f4af8b8ca45e7a96cff5bb6f2bca1 from presence-damompoulos-is-the-best 
  list of left participants is [] has failed 
+time: 2018-04-27 11:34:54.814556 Action: Received Disconnect message from 3bd6876ade5e4d008fffb91326be007c 
+time: 2018-04-27 11:34:54.819254 Action: Removed 3bd6876ade5e4d008fffb91326be007c from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:35:02.642152 Action: Received Disconnect message from d4497712217d4f29aa1a5cf039d12ce5 
+time: 2018-04-27 11:35:02.647836 Action: Removed d4497712217d4f29aa1a5cf039d12ce5 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:35:15.058773 Action: Received Disconnect message from dc52e43607f1433a8c42181bb240ca0f 
+time: 2018-04-27 11:35:15.064395 Action: Removed dc52e43607f1433a8c42181bb240ca0f from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:35:26.222573 Action: Received Disconnect message from 774f1237677f4ab7958b0848207f36f1 
+time: 2018-04-27 11:35:26.229373 Action: Removed 774f1237677f4ab7958b0848207f36f1 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:35:57.953915 Action: Received Disconnect message from f26176d4cf7d4534aa16e14e4e3697b6 
+time: 2018-04-27 11:35:57.958613 Action: Removed f26176d4cf7d4534aa16e14e4e3697b6 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:37:08.324309 Action: Received Disconnect message from 0da525afb8d04748bc93706244e5d5cf 
+time: 2018-04-27 11:37:08.330323 Action: Removed 0da525afb8d04748bc93706244e5d5cf from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:37:31.839438 Action: Received Disconnect message from 1e910f1b96e0489bb7d8af51666a5869 
+time: 2018-04-27 11:37:31.846561 Action: Removed 1e910f1b96e0489bb7d8af51666a5869 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:38:03.456354 Action: Received Disconnect message from d9f55888b70441a39529b2ab9cfdb7ba 
+time: 2018-04-27 11:38:03.462414 Action: Removed d9f55888b70441a39529b2ab9cfdb7ba from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:38:30.335263 Action: Received Disconnect message from 5cb4574be455462a9fde2e968aa51d6f 
+time: 2018-04-27 11:38:30.340981 Action: Removed 5cb4574be455462a9fde2e968aa51d6f from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:39:06.975597 Action: Received Disconnect message from 9085a0132408439aaa319f1183c20e6a 
+time: 2018-04-27 11:39:06.980682 Action: Removed 9085a0132408439aaa319f1183c20e6a from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:39:16.831182 Action: Received Disconnect message from 8d09669555314487a5bcaacbf206f39d 
+time: 2018-04-27 11:39:16.836649 Action: Removed 8d09669555314487a5bcaacbf206f39d from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:40:34.166972 Action: Received Disconnect message from 49eb50114c08439681390f29218b773e 
+time: 2018-04-27 11:40:34.172795 Action: Removed 49eb50114c08439681390f29218b773e from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:40:43.665398 Action: Received Disconnect message from f0ac12584be844b09e9689458d0e9599 
+time: 2018-04-27 11:40:43.669913 Action: Removed f0ac12584be844b09e9689458d0e9599 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:41:47.342794 Action: Received Disconnect message from e6ba0c4617714a11881c58ec267a6db4 
+time: 2018-04-27 11:41:47.347384 Action: Removed e6ba0c4617714a11881c58ec267a6db4 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:42:16.051200 Action: Received Disconnect message from ea74fa369e6f4e92949f988107acfe06 
+time: 2018-04-27 11:42:16.055619 Action: Removed ea74fa369e6f4e92949f988107acfe06 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:42:41.433053 Action: Received Disconnect message from 7d38889114b6480db9fcda4bd9ecf3ea 
+time: 2018-04-27 11:42:41.440192 Action: Removed 7d38889114b6480db9fcda4bd9ecf3ea from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:42:51.709161 Action: Received Disconnect message from dc214bce763c42f2bb1ab701add24e17 
+time: 2018-04-27 11:42:51.714621 Action: Removed dc214bce763c42f2bb1ab701add24e17 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:42:59.293310 Action: Received Disconnect message from 45a493c76e0a427691aa14cb2a522e6b 
+time: 2018-04-27 11:42:59.298745 Action: Removed 45a493c76e0a427691aa14cb2a522e6b from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:43:20.373996 Action: Received Disconnect message from 2e86090675cf4852bfa70a489486d31c 
+time: 2018-04-27 11:43:20.380777 Action: Removed 2e86090675cf4852bfa70a489486d31c from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:43:26.733413 Action: Received Disconnect message from d03b2317ab4044a991a93f80127842f5 
+time: 2018-04-27 11:43:26.741018 Action: Removed d03b2317ab4044a991a93f80127842f5 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:43:58.619989 Action: Received Disconnect message from 7afc631b243b45b39bb6731cdef31c0f 
+time: 2018-04-27 11:43:58.626707 Action: Removed 7afc631b243b45b39bb6731cdef31c0f from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:44:13.843283 Action: Received Disconnect message from a510b92e0a9547978f9bb969004bf1b3 
+time: 2018-04-27 11:44:13.847170 Action: Removed a510b92e0a9547978f9bb969004bf1b3 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:44:25.141938 Action: Received Disconnect message from c1b558594c5941fc93c5352c0dae6eec 
+time: 2018-04-27 11:44:25.149867 Action: Removed c1b558594c5941fc93c5352c0dae6eec from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:44:45.355354 Action: Received Disconnect message from 95ddb03a7dbf4ad7a2ead29e52456b2c 
+time: 2018-04-27 11:44:45.361455 Action: Removed 95ddb03a7dbf4ad7a2ead29e52456b2c from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:44:55.471219 Action: Received Disconnect message from 4ba4c5821536456ba5554de6dd9c14a5 
+time: 2018-04-27 11:44:55.478316 Action: Removed 4ba4c5821536456ba5554de6dd9c14a5 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:45:07.031009 Action: Received Disconnect message from 9b69a8d00c7f4cf6b01402c3c21e93b2 
+time: 2018-04-27 11:45:07.037346 Action: Removed 9b69a8d00c7f4cf6b01402c3c21e93b2 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:45:30.116768 Action: Received Disconnect message from 9834130feaf241f6844f7dce0c0869c3 
+time: 2018-04-27 11:45:30.125643 Action: Removed 9834130feaf241f6844f7dce0c0869c3 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:45:35.140343 Action: Received Disconnect message from 01895d5eac1c4f2d824b1e5901826cc2 
+time: 2018-04-27 11:45:35.145855 Action: Removed 01895d5eac1c4f2d824b1e5901826cc2 from presence-3666 
+ list of left participants is [] 
+time: 2018-04-27 11:45:46.898675 Action: Received Disconnect message from 198a2aaa40ab4e78a6ac109aa7667306 
+time: 2018-04-27 11:45:46.903417 Action: Removed 198a2aaa40ab4e78a6ac109aa7667306 from presence-3666 
+ list of left participants is [] 
