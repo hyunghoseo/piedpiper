@@ -237,8 +237,11 @@ class Rextester
                     success: function(text) {
                         editor.session.setValue(text);
                         triggerChange();
-                        var withoutdot = filename.substr(0, filename.indexOf('.'));
+                        var withoutdot = filename.substr(0, filename.lastIndexOf('.'));
                         $('#filename').val(withoutdot);
+                        if (filename.endsWith('.java')) $('#language').val('java');
+                        else if (filename.endsWith('.swift')) $('#language').val('swift');
+                        else if (filename.endsWith('.txt')) $('#language').val('txt');
                     }
                 })
             }
