@@ -120,8 +120,9 @@
         <div class="pure-u-2-3" style="width: calc(100% - 460px)">
             <form id="buttons" class="pure-form" onsubmit="return;">
                 <select id="language">
-        <option value="java">Java</option>
+        <option value="java" selected="selected">Java</option>
         <option value="swift">Swift</option>
+        <option value="txt">Plain-text</option>
     </select>
                 <button class="pure-button" type="button" id="run">Run</button>
                 <label for="prompt_user" style="color: white;">
@@ -160,7 +161,7 @@ class Rextester
     
 <div id="open_file_modal" class="modal">
     <div class="modal-content">
-        Open FIle<span class="close">&times;</span>
+        Open File<span class="close">&times;</span>
         <div id="file_list"></div>
     </div>
 </div>
@@ -205,6 +206,7 @@ class Rextester
             var EditSession = ace.require("ace/edit_session").EditSession;
             var java = new EditSession("");
             var swift = new EditSession("");
+            var plaintxt = new EditSession("");
 
             var pusher = new Pusher('b240a449c3e79c81f151', {
                 cluster: 'us2',
@@ -242,18 +244,27 @@ class Rextester
             }
         $(function() {
             
-            
-            $('#language').on('change', function(e) {
+            var previous;
+            $('#language').on('focus', function() {
+                    previous = this.value;
+            }).on('change', function(e) {
                 var language = $(this).val();
                 if (language == 'java') {
-                    swift = new EditSession(editor.session.getValue());
+                    if (previous == 'swift') swift = new EditSession(editor.session.getValue());
+                    else if (previous == 'txt') plaintxt = new EditSession(editor.session.getValue());
                     editor.setSession(java);
                     editor.session.setMode('ace/mode/java');
                 }                
                 else if (language == 'swift') {
-                    java = new EditSession(editor.session.getValue());
+                    if (previous == 'java') java = new EditSession(editor.session.getValue());
+                    else if (previous == 'txt') plaintxt = new EditSession(editor.session.getValue());
                     editor.setSession(swift);
                     editor.session.setMode('ace/mode/swift');
+                }       
+                else if (language == 'txt') {
+                    if (previous == 'swift') swift = new EditSession(editor.session.getValue());
+                    else if (previous == 'java') java = new EditSession(editor.session.getValue());
+                    editor.setSession(plaintxt);
                 }
             });
             

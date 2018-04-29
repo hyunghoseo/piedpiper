@@ -35,7 +35,7 @@ def compile_file(file_id, language):
     elif language == 'swift':
         cmd = 'swiftc -o {}/{} {}'.format(dirname, file_id, fname)
     else:
-        print 'Unsupported language'
+        return 'Cannot compile plain text'
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output, error = pipe.communicate()
     if error:
