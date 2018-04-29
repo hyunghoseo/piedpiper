@@ -50,7 +50,7 @@ def run_file(file_id, language, u_input):
             cmd = 'echo "{}" | java {}'.format(u_input, file_id)
         else:
             cmd = 'java {}'.format(file_id)
-    else language == 'swift':
+    elif language == 'swift':
         if u_input:
             cmd = 'echo "{}" | ./{}'.format(u_input, file_id)
         else:
