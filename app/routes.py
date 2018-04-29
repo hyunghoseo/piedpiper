@@ -180,7 +180,7 @@ def run_code():
     compile_err = compile_file(file_id, language)
     time.sleep(3)
     if compile_err:
-        return complile_err
+        return compile_err
     output = run_file(file_id, language, u_input)
     
     return output
