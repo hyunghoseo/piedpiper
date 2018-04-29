@@ -32,8 +32,8 @@ def compile_file(file_id, language):
         os.makedirs(dirname)
     if language == 'java':
         cmd = 'javac -d {} {}'.format(dirname, fname)
-    elif fname.endswith('.swift'):
-        pass
+    elif language == 'swift':
+        cmd = 'swiftc -o {}/{} {}'.format(dirname, file_id, fname)
     else:
         print 'Unsupported language'
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -50,6 +50,11 @@ def run_file(file_id, language, u_input):
             cmd = 'echo "{}" | java {}'.format(u_input, file_id)
         else:
             cmd = 'java {}'.format(file_id)
+    else language == 'swift':
+        if u_input:
+            cmd = 'echo "{}" | ./{}'.format(u_input, file_id)
+        else:
+            cmd = './{}'.format(file_id)
     pipe = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     output, error = pipe.communicate()
     os.chdir(oldpath)
